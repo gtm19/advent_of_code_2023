@@ -1,23 +1,7 @@
 // https://adventofcode.com/2022/day/1
-use std::fs::File;
-use std::io::{self, BufRead};
+use std::io;
 
-struct SourceFile {
-    lines: Vec<String>,
-}
-
-impl SourceFile {
-    fn new(file_path: &str) -> io::Result<Self> {
-        let lines = read_lines(file_path)?;
-        Ok(Self { lines })
-    }
-}
-
-fn read_lines(file_path: &str) -> io::Result<Vec<String>> {
-    let file = File::open(file_path)?;
-    let lines = io::BufReader::new(file).lines().collect::<Result<_, _>>()?;
-    Ok(lines)
-}
+use crate::common::SourceFile;
 
 type Cals = Vec<i32>;
 

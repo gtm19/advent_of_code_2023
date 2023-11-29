@@ -1,3 +1,4 @@
+mod common;
 mod day00;
 
 fn main() {
