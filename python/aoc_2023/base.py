@@ -8,8 +8,10 @@ def get_lines(file_path: str) -> list[str]:
 
 
 class Day(ABC):
-    def __init__(self, file_path: str) -> None:
-        self.lines = get_lines(file_path)
+    def __init__(self, file_path: str | None = None) -> None:
+        print(__file__)
+        if file_path is not None:
+            self.lines = get_lines(file_path)
 
     @abstractmethod
     def part_1(self) -> Any:

@@ -1,13 +1,10 @@
-from aoc_2023 import day_01
-
-DAYS = {
-    1: day_01,
-}
+import aoc_2023
 
 
 def main():
-    for i, day in DAYS.items():
-        print(f"Day {i}")
+    for day in aoc_2023.__all__:
+        print(f"Day {day}")
+        day = getattr(aoc_2023, day)
         day.main()
 
 
