@@ -20,7 +20,7 @@ if [ $DAY -lt 1 ]; then
 fi
 
 # pad with 0 if less than 10
-printf -v DAY "%02d" $DAY
+DAY=$(printf "%02d" $DAY)
 echo "Setting up Rust project for day $DAY"
 
 # create dayDD folder within src, if it doesn't exist
