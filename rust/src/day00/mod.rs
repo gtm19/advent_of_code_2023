@@ -48,12 +48,26 @@ fn either_part(file_path: &str, n: usize) -> io::Result<i32> {
     Ok(max_cals)
 }
 
-pub fn part1(file_path: &str) -> io::Result<i32> {
+fn part1(file_path: &str) -> io::Result<i32> {
     either_part(file_path, 1)
 }
 
-pub fn part2(file_path: &str) -> io::Result<i32> {
+fn part2(file_path: &str) -> io::Result<i32> {
     either_part(file_path, 3)
+}
+
+pub fn run() -> io::Result<()> {
+    println!("Day 00 of Advent of Code!");
+    let file_path: &str = "src/day00/data/actual.txt";
+
+    let part1 = part1(file_path)?;
+    println!("Part 1: {}", part1);
+
+    let part2 = part2(file_path)?;
+    println!("Part 2: {}", part2);
+    println!();
+
+    Ok(())
 }
 
 #[cfg(test)]

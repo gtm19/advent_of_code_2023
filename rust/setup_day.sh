@@ -36,13 +36,27 @@ if [ ! -f "$DIR/mod.rs" ]; then
 use std::io;
 use crate::common::SourceFile;
 
-pub fn part1() -> io::Result<_> {
+fn part1() -> io::Result<_> {
     println!("Part 1");
     Ok(())
 }
 
-pub fn part2() -> io::Result<_> {
+fn part2() -> io::Result<_> {
     println!("Part 2");
+    Ok(())
+}
+
+pub fn run() -> io::Result<()> {
+    println!("Day $DAY of Advent of Code!");
+    let file_path: &str = "$DIR/data/actual.txt";
+
+    let part1 = part1(file_path)?;
+    println!("Part 1: {}", part1);
+
+    let part2 = part2(file_path)?;
+    println!("Part 2: {}", part2);
+    println!();
+
     Ok(())
 }
 
