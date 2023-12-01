@@ -2,16 +2,20 @@ from aoc_2023.base import Day
 import re
 
 DIGITS = {
-    "one": 1,
-    "two": 2,
-    "three": 3,
-    "four": 4,
-    "five": 5,
-    "six": 6,
-    "seven": 7,
-    "eight": 8,
-    "nine": 9,
+    "one": "1",
+    "two": "2",
+    "three": "3",
+    "four": "4",
+    "five": "5",
+    "six": "6",
+    "seven": "7",
+    "eight": "8",
+    "nine": "9",
 }
+
+
+def word_to_digit(word: str) -> str:
+    return DIGITS.get(word, word)
 
 
 def extract_digits(
@@ -19,12 +23,11 @@ def extract_digits(
 ) -> int | list[int]:
     if isinstance(input, list):
         return [extract_digits(i, swap_digits) for i in input]
+    regex = r"\d"
     if swap_digits:
-        word_digits = re.findall("|".join(DIGITS), input)
-        for word in word_digits:
-            input = re.sub(word, str(DIGITS[word]), input)
-    digits = re.sub(r"\D", "", input)
-    return int(digits[0] + digits[-1])
+        regex += "|" + "|".join(DIGITS)
+    digits = re.findall(regex, input)
+    return int(word_to_digit(digits[0]) + word_to_digit(digits[-1]))
 
 
 class Solution(Day):
