@@ -2,16 +2,10 @@ from abc import ABC, abstractmethod
 from typing import Any
 
 
-def get_lines(file_path: str) -> list[str]:
-    with open(file_path, "r") as f:
-        return f.readlines()
-
-
 class Day(ABC):
     def __init__(self, file_path: str | None = None) -> None:
-        print(__file__)
-        if file_path is not None:
-            self.lines = get_lines(file_path)
+        self.file_path = file_path
+        self.lines = self._get_lines()
 
     @abstractmethod
     def part_1(self) -> Any:
@@ -24,3 +18,9 @@ class Day(ABC):
     def run(self) -> None:
         print(f"Part 1: {self.part_1()}")
         print(f"Part 2: {self.part_2()}")
+
+    def _get_lines(self) -> list[str]:
+        if self.file_path is None:
+            raise ValueError("No file path provided")
+        with open(self.file_path, "r", encoding="UTF-8") as f:
+            return f.read().splitlines()
