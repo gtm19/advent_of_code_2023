@@ -104,6 +104,6 @@ mod tests {
 
     #[test]
     fn test_part2() {
-        assert_eq!(part2("src/day01/data/test.txt").unwrap(), 281); // TODO: change this
+        assert_eq!(part2("src/day01/data/test_2.txt").unwrap(), 281); // TODO: change this
     }
 }
