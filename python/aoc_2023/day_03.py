@@ -62,7 +62,6 @@ class Solution(Day):
 def main():
     day = Solution("./aoc_2023/data/day_03.txt")
     day.run()
-    # return day.get_surrounding(2, 8, 10)
 
 
 if __name__ == "__main__":
