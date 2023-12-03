@@ -1,3 +1,6 @@
+"""
+https://adventofcode.com/2023/day/1
+"""
 from aoc_2023.base import Day
 import re
 

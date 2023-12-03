@@ -1,3 +1,6 @@
+"""
+https://adventofcode.com/2023/day/2
+"""
 from aoc_2023.base import Day
 from dataclasses import dataclass, field
 import re

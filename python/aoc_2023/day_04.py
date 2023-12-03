@@ -1,3 +1,7 @@
+"""
+https://adventofcode.com/2023/day/4
+"""
+
 from __future__ import annotations
 from aoc_2023.base import Day
 from dataclasses import dataclass

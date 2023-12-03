@@ -37,6 +37,9 @@ PY_FILE="$DIR/day_$DAY.py"
 if [ ! -f $PY_FILE ]; then
     echo "Creating $PY_FILE"
     cat << EOF > $PY_FILE
+"""
+https://adventofcode.com/2023/day/$1
+"""
 from aoc_2023.base import Day
 
 class Solution(Day):
