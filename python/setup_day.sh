@@ -4,7 +4,8 @@ set -e
 
 # get arg being the day to set up
 DAY=$1
-DIR=./aoc_2023
+YEAR=2023
+DIR=./aoc_$YEAR
 DATA_DIR="$DIR/data"
 
 # print help if no args, or if first arg is -h or --help
@@ -38,9 +39,9 @@ if [ ! -f $PY_FILE ]; then
     echo "Creating $PY_FILE"
     cat << EOF > $PY_FILE
 """
-https://adventofcode.com/2023/day/$1
+https://adventofcode.com/$YEAR/day/$1
 """
-from aoc_2023.base import Day
+from aoc_$YEAR.base import Day
 
 class Solution(Day):
     def part_1(self):
@@ -76,7 +77,7 @@ TEST_FILE="$TEST_DIR/test_day_$DAY.py"
 if [ ! -f $TEST_FILE ]; then
     echo "Creating $TEST_FILE"
     cat << EOF > $TEST_FILE
-import aoc_2023.day_$DAY as day_$DAY
+import aoc_$YEAR.day_$DAY as day_$DAY
 import os
 import pytest
 
