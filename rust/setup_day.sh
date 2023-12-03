@@ -3,6 +3,7 @@
 set -e
 
 # get arg being the day to set up
+YEAR=2023
 DAY=$1
 
 # print help if no args, or if first arg is -h or --help
@@ -33,6 +34,7 @@ mkdir -p $DIR/data
 if [ ! -f "$DIR/mod.rs" ]; then
     echo "Creating $DIR/mod.rs"
     cat << EOF > $DIR/mod.rs
+// https://adventofcode.com/$YEAR/day/$1
 use std::io;
 use crate::common::SourceFile;
 
