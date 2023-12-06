@@ -25,8 +25,30 @@ class Func:
                 return dest[source.index(input)]
         return input
 
-    def call_range(self, input: list[range]) -> list[range]:
-        pass
+    def call_range(self, input: range) -> list[range]:
+        mapped = []
+        unmapped = []
+
+        for source, dest in self.ranges:
+            overlap_start = max(source.start, input.start)
+            overlap_stop = min(source.stop, input.stop)
+
+            if overlap_start < overlap_stop:
+                mapped.append(
+                    range(
+                        overlap_start - source.start + dest.start,
+                        overlap_stop - source.start + dest.start,
+                    )
+                )
+                if input.start < overlap_start:
+                    unmapped.append(range(input.start, overlap_start))
+                if input.stop > overlap_stop:
+                    unmapped.append(range(overlap_stop, input.stop))
+                break
+        else:
+            mapped.append(input)
+
+        return mapped, unmapped
 
     def __call__(self, input: int | range) -> int | list[range]:
         if isinstance(input, int):
@@ -63,7 +85,20 @@ class Almanac:
         return seeds
 
     def map_range(self):
-        pass
+        seeds = self.seeds.copy()
+
+        for func in self.funcs:
+            new_seeds = []
+            while len(seeds) > 0:
+                seed = seeds.pop()
+
+                mapped, unmapped = func(seed)
+                seeds.extend(unmapped)
+                new_seeds.extend(mapped)
+
+            seeds = new_seeds
+
+        return seeds
 
 
 class Solution(Day):
@@ -79,7 +114,8 @@ class Solution(Day):
 
     def part_2(self):
         almanac = Almanac.from_lines(self.lines, use_range=True)
-        return
+        mapped = almanac.map_range()
+        return min(rng.start for rng in mapped)
 
 
 def main():
