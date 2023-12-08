@@ -1,20 +1,27 @@
-# !/bin/bash
+#!/bin/zsh
 
 set -e
 
-# get arg being the day to set up
-DAY=$1
-YEAR=2023
-DIR=./aoc_$YEAR
-DATA_DIR="$DIR/data"
-
 # print help if no args, or if first arg is -h or --help
-if [ $# -eq 0 ] || [ $1 = "-h" ] || [ $1 = "--help" ]; then
+if [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
     echo "Usage: setup_day.sh <day>"
     echo "day: the day to set up - must be greater than 0, and will be padded with 0 if less than 10"
     echo "e.g. setup_day.sh 1 -> sets up day01"
     exit 0
 fi
+
+# get arg being the day to set up
+if [ $# -eq 0 ]; then
+    echo "No arguments supplied, defaulting to current day"
+    DAY=$(date +"%d")
+    DAY=$(expr $DAY + 0)
+else
+    DAY=$1
+fi
+echo "Setting up day $DAY"
+YEAR=2023
+DIR=./aoc_$YEAR
+DATA_DIR="$DIR/data"
 
 # exit if day is not greater than 0
 if [ $DAY -lt 1 ]; then
