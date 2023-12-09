@@ -30,23 +30,23 @@ if [ $DAY -lt 1 ]; then
 fi
 
 # pad with 0 if less than 10
-DAY=$(printf "%02d" $DAY)
+DAY_PADDED=$(printf "%02d" $DAY)
 echo "Setting up Python project for day $DAY"
 
 # Initialise data file
-DATA_FILE="$DATA_DIR/day_$DAY.txt"
+DATA_FILE="$DATA_DIR/day_$DAY_PADDED.txt"
 if [ ! -f $DATA_FILE ]; then
     echo "Creating $DATA_FILE"
     echo "INPUT DATA GOES HERE" > $DATA_FILE
 fi
 
 # Initialise module file
-PY_FILE="$DIR/day_$DAY.py"
+PY_FILE="$DIR/day_$DAY_PADDED.py"
 if [ ! -f $PY_FILE ]; then
     echo "Creating $PY_FILE"
     cat << EOF > $PY_FILE
 """
-https://adventofcode.com/$YEAR/day/$1
+https://adventofcode.com/$YEAR/day/$DAY
 """
 from aoc_$YEAR.base import Day
 
@@ -72,7 +72,7 @@ fi
 TEST_DIR="./tests"
 TEST_DATA_DIR="$TEST_DIR/data"
 
-TEST_DATA_FILE="$TEST_DATA_DIR/day_$DAY.txt"
+TEST_DATA_FILE="$TEST_DATA_DIR/day_$DAY_PADDED.txt"
 
 if [ ! -f $TEST_DATA_FILE ]; then
     echo "Creating $TEST_DATA_FILE"
@@ -80,20 +80,20 @@ if [ ! -f $TEST_DATA_FILE ]; then
 fi
 
 # Initialise test script
-TEST_FILE="$TEST_DIR/test_day_$DAY.py"
+TEST_FILE="$TEST_DIR/test_day_$DAY_PADDED.py"
 if [ ! -f $TEST_FILE ]; then
     echo "Creating $TEST_FILE"
     cat << EOF > $TEST_FILE
-import aoc_$YEAR.day_$DAY as day_$DAY
+import aoc_$YEAR.day_$DAY_PADDED as day_$DAY_PADDED
 import os
 import pytest
 
-test_input = os.path.join(os.path.dirname(__file__), "data/day_$DAY.txt")
+test_input = os.path.join(os.path.dirname(__file__), "data/day_$DAY_PADDED.txt")
 
 
 @pytest.fixture
 def solution():
-    return day_$DAY.Solution(test_input)
+    return day_$DAY_PADDED.Solution(test_input)
 
 
 def test_part_1(solution):
