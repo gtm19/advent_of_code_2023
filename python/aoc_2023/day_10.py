@@ -65,7 +65,7 @@ class Solution(Day):
             for col_i in range(self.n_cols):
                 if (row_i, col_i) in self.path:
                     # can safely add 'S' here because it is a "|" in my input
-                    if self.lines[row_i][col_i] in "|JLS":
+                    if self.lines[row_i][col_i] in "|F7S":
                         n_crossings += 1
                 else:
                     trapped_this_row += n_crossings % 2
