@@ -57,16 +57,14 @@ class Solution(Day):
         return int((len(path) - 1) / 2)
 
     def part_2(self):
-        n_rows = len(self.lines)
-        n_cols = len(self.lines[0])
-
         trapped_points = 0
 
-        for row_i in range(n_rows):
+        for row_i in range(self.n_rows):
             trapped_this_row = 0
             n_crossings = 0
-            for col_i in range(n_cols):
+            for col_i in range(self.n_cols):
                 if (row_i, col_i) in self.path:
+                    # can safely add 'S' here because it is a "|" in my input
                     if self.lines[row_i][col_i] in "|JLS":
                         n_crossings += 1
                 else:
