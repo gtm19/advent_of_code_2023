@@ -11,7 +11,7 @@ def solution():
 
 
 def test_part_1(solution):
-    assert solution.part_1() == 374  # TODO: add expected result
+    assert solution.part_1() == 374
 
 
 # def test_part_2(solution):

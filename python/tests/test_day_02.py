@@ -11,11 +11,11 @@ def solution():
 
 
 def test_part_1(solution):
-    assert solution.part_1() == 8  # TODO: add expected result
+    assert solution.part_1() == 8
 
 
 def test_part_2(solution):
-    assert solution.part_2() == 2286  # TODO: add expected result
+    assert solution.part_2() == 2286
 
 
 if __name__ == "__main__":

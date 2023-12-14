@@ -23,11 +23,11 @@ def test_func(mapper, n_in, n_out):
 
 
 def test_part_1(solution):
-    assert solution.part_1() == 35  # TODO: add expected result
+    assert solution.part_1() == 35
 
 
 def test_part_2(solution):
-    assert solution.part_2() == 46  # TODO: add expected result
+    assert solution.part_2() == 46
 
 
 if __name__ == "__main__":
