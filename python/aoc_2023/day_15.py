@@ -4,6 +4,10 @@ https://adventofcode.com/2023/day/15
 from aoc_2023.base import Day
 
 
+def hash_it(n: int) -> int:
+    pass
+
+
 class Solution(Day):
     def _get_lines(self) -> list[str]:
         with open(self.file_path, "r", encoding="utf-8") as f:
