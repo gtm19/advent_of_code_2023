@@ -15,7 +15,7 @@ def test_part_1(solution):
 
 
 def test_part_2(solution):
-    assert solution.part_2() == -9999  # TODO: add expected result
+    assert solution.part_2() == 167409079868000
 
 
 if __name__ == "__main__":

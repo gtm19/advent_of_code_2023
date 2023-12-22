@@ -18,6 +18,9 @@ class Part:
     def from_str(cls, string: str) -> Part:
         return cls(*map(int, re.findall(r"\d+", string)))
 
+    def sum(self) -> int:
+        return self.x + self.m + self.a + self.s
+
 
 def make_lookup(input: str = "ccr{a<259:A,x>2863:R,m>2689:jpj,xt}"):
     label, rules = re.match(r"^([a-z]+){(.+)}$", input).groups()
@@ -29,14 +32,40 @@ def make_lookup(input: str = "ccr{a<259:A,x>2863:R,m>2689:jpj,xt}"):
             attr, func, num, outcome = re.match(
                 r"^([xmas])([<>])(\d+):([A-z]+)$", rule
             ).groups()
-        pass
+            value = getattr(part, attr)
+            num = int(num)
+            if func == ">" and value > num:
+                return outcome
+            if func == "<" and value < num:
+                return outcome
+        return lastly
 
-    return lookup
+    return label, lookup
 
 
 class Solution(Day):
+    def __init__(self, file_path: str | None = None) -> None:
+        with open(file_path, "r", encoding="utf-8") as f:
+            workflows, parts = f.read().split("\n\n")
+            self.parts = [Part.from_str(part) for part in parts.strip().split("\n")]
+            self.workflows = {
+                label: func
+                for label, func in [
+                    make_lookup(input) for input in workflows.strip().split("\n")
+                ]
+            }
+
     def part_1(self):
-        pass
+        results = {"A": [], "R": []}
+
+        while self.parts:
+            part = self.parts.pop()
+            workflow = "in"
+            while workflow not in ("A", "R"):
+                workflow = self.workflows.get(workflow)(part)
+            results[workflow].append(part)
+
+        return sum(part.sum() for part in results["A"])
 
     def part_2(self):
         pass
@@ -48,7 +77,4 @@ def main():
 
 
 if __name__ == "__main__":
-    # main()
-    print(Part.from_str("{x=1351,m=134,a=1152,s=1764}"))
-    lookup = make_lookup()
-    lookup(Part.from_str("{x=1351,m=134,a=1152,s=1764}"))
+    main()
